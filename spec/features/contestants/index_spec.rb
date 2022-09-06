@@ -16,6 +16,12 @@ RSpec.describe 'contestant show page' do
     @kentaro = Contestant.create(name: "Kentaro Kameyama", age: 30, hometown: "Boston", years_of_experience: 8)
     @erin = Contestant.create(name: "Erin Robertson", age: 44, hometown: "Denver", years_of_experience: 15)
 
+    ContestantProject.create(contestant_id: @jay.id, project_id: @news_chic.id)
+    ContestantProject.create(contestant_id: @gretchen.id, project_id: @news_chic.id)
+    ContestantProject.create(contestant_id: @gretchen.id, project_id: @upholstery_tux.id)
+    ContestantProject.create(contestant_id: @kentaro.id, project_id: @upholstery_tux.id)
+    ContestantProject.create(contestant_id: @kentaro.id, project_id: @boardfit.id)
+    ContestantProject.create(contestant_id: @erin.id, project_id: @boardfit.id)
   end
 
   describe 'as a User' do
@@ -28,6 +34,18 @@ RSpec.describe 'contestant show page' do
         expect(page).to have_content(@gretchen.name)
         expect(page).to have_content(@kentaro.name)
         expect(page).to have_content(@erin.name)
+      end
+
+      it 'under each contestants name I see a list of their projects' do
+
+        visit "/contestants"
+
+        within("#contestant-#{@gretchen.id}") do
+          expect(page).to have_content(@news_chic.name)
+          expect(page).to_not have_content(@boardfit.name)
+          expect(page).to have_content(@upholstery_tux.name)
+          expect(page).to_not have_content(@lit_fit.name)
+        end
       end
     end
   end
