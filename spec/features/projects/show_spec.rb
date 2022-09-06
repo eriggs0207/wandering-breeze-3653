@@ -48,6 +48,8 @@ RSpec.describe 'project show page' do
 
         expect(page).to have_content(@news_chic.contestant_count)
       end
+
+      it ''
     end
   end
 end
