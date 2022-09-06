@@ -23,7 +23,12 @@ RSpec.describe 'project show page' do
       end
 
 
-      it 'I see the theme of the challenge that this project belongs to'
+      it 'I see the theme of the challenge that this project belongs to' do
+
+        visit "/projects/#{@news_chic.id}"
+
+        expect(page).to have_content(@recycled_material_challenge.theme)
+      end 
     end
   end
 end
