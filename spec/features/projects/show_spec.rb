@@ -53,8 +53,8 @@ RSpec.describe 'project show page' do
 
         visit "/projects/#{@news_chic.id}"
 
-        expect(page).to have_content(12.5)
-        expect(page).to have_content(@new_chic.contestant_avg_exp)
+        expect(page).to have_content("12.5 years")
+        expect(page).to have_content(@news_chic.contestant_avg_exp)
       end
     end
   end
